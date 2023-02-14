@@ -42,7 +42,7 @@ class Reader(models.Model):
         db_index=True,
     )
     address = models.CharField(verbose_name="адрес", max_length=256)
-    phone = models.CharField(verbose_name="телефон", max_length=10)
+    phone = models.CharField(verbose_name="телефон", max_length=12)
 
     def __str__(self):
         return f"{self.id} {self.name}"
