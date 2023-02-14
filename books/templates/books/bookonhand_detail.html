@@ -19,4 +19,13 @@
         {% include 'detail_block.html' with label='Примечание' data=object.details %}
     {% endif %}
 
+    <div class="row justify-content-start my-4">
+        <div class="col-2 text-end">
+          <a class="btn btn-outline-dark btn-lg" href="{% url 'bookonhand_update' pk=object.pk %}">Изменить</a>
+        </div>
+        <div class="col-7">
+          <a class="btn btn-outline-primary btn-lg" href="{% url 'booksonhand' %}">Назад</a>
+        </div>
+    </div>
+
 {% endblock %}

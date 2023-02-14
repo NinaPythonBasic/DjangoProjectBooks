@@ -30,6 +30,7 @@ urlpatterns = [
     path(
         "bookonhand/<int:pk>/", views.BookOnHandDetailView.as_view(), name="bookonhand"
     ),
+
     path("book/create/", views.BookCreateView.as_view(), name="book_create"),
     path(
         "category/create/", views.CategoryCreateView.as_view(), name="category_create"
@@ -40,5 +41,17 @@ urlpatterns = [
         views.BookOnHandCreateView.as_view(),
         name="bookonhand_create",
     ),
+
+    path("book/update/<int:pk>/", views.BookUpdateView.as_view(), name="book_update"),
+    path(
+        "category/update/<int:pk>/", views.CategoryUpdateView.as_view(), name="category_update"
+    ),
+    path("reader/update/<int:pk>/", views.ReaderUpdateView.as_view(), name="reader_update"),
+    path(
+        "bookonhand/update/<int:pk>/",
+        views.BookOnHandUpdateView.as_view(),
+        name="bookonhand_update",
+    ),
+
     path("admin/", admin.site.urls),
 ]
