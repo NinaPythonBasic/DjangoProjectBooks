@@ -28,7 +28,7 @@ class Book(models.Model):
     onhand = models.BooleanField(verbose_name="book on hand", default=False)
 
     def __str__(self):
-        return f"{self.name} ({self.author})"
+        return f"{self.id} {self.name} ({self.author})"
 
 
 class Reader(models.Model):
@@ -40,6 +40,9 @@ class Reader(models.Model):
     )
     address = models.CharField(verbose_name="address", max_length=256)
     phone = models.CharField(verbose_name="phone", max_length=10)
+
+    def __str__(self):
+        return f"{self.id} {self.name}"
 
 
 class BookOnHand(models.Model):

@@ -30,5 +30,15 @@ urlpatterns = [
     path(
         "bookonhand/<int:pk>/", views.BookOnHandDetailView.as_view(), name="bookonhand"
     ),
+    path("book/create/", views.BookCreateView.as_view(), name="book_create"),
+    path(
+        "category/create/", views.CategoryCreateView.as_view(), name="category_create"
+    ),
+    path("reader/create/", views.ReaderCreateView.as_view(), name="reader_create"),
+    path(
+        "bookonhand/create/",
+        views.BookOnHandCreateView.as_view(),
+        name="bookonhand_create",
+    ),
     path("admin/", admin.site.urls),
 ]
