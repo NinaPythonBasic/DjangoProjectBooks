@@ -24,7 +24,7 @@ class Book(models.Model):
     publisher = models.CharField(verbose_name="издательство", max_length=104)
     year = models.IntegerField(verbose_name="год издания")
     place = models.CharField(verbose_name="место хранения", max_length=256)
-    details = models.TextField(verbose_name="примечание", default="")
+    details = models.TextField(verbose_name="примечание", default="", blank=True)
     onhand = models.BooleanField(verbose_name="книга выдана", default=False)
 
     def __str__(self):
@@ -52,5 +52,5 @@ class BookOnHand(models.Model):
     book = models.ForeignKey(Book, on_delete=models.PROTECT, verbose_name="книга")
     reader = models.ForeignKey(Reader, on_delete=models.PROTECT, verbose_name="читатель")
     issuedate = models.DateField(verbose_name="дата выдачи")
-    returndate = models.DateField(verbose_name="дата возврата", null=True)
-    details = models.TextField(verbose_name="примечание", default="")
+    returndate = models.DateField(verbose_name="дата возврата", null=True, blank=True)
+    details = models.TextField(verbose_name="примечание", default="", blank=True)
