@@ -47,7 +47,7 @@ class TestBook(TestCase):
         self.assertTrue(isinstance(self.book.details, str))
 
     def test_str(self):
-        self.assertEqual(str(self.book), f"{self.id} {self.book.name} ({self.book.author})")
+        self.assertEqual(str(self.book), f"{self.book.id} {self.book.name} ({self.book.author})")
 
     def test_raises(self):
         with self.assertRaises(Exception):
