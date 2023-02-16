@@ -6,8 +6,8 @@
     <div class="h4 my-3 pb-3 text-muted">{{object}}</div>
     <form method="post">
         {% csrf_token %}
-        <a class="btn btn-outline-dark me-3 btn-lg" href="{% url 'categories' %}">Нет</a>
-        <button class="btn btn-danger btn-lg" type="submit">Да</button>
+        <a class="btn btn-outline-dark me-3 btn-lg" href="{% url 'category' pk=object.pk %}">Нет</a>
+        <button class="btn btn-outline-danger btn-lg" type="submit">Да</button>
     </form>
 
 {% endblock %}
