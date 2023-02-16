@@ -54,3 +54,11 @@ class BookOnHand(models.Model):
     issuedate = models.DateField(verbose_name="дата выдачи")
     returndate = models.DateField(verbose_name="дата возврата", null=True, blank=True)
     details = models.TextField(verbose_name="примечание", default="", blank=True)
+
+    def __str__(self):
+        if self.returndate is None:
+            returndate = ''
+        else:
+            returndate = self.returndate.strftime("%b. %d, %Y")
+        issuedate = self.issuedate.strftime("%b. %d, %Y")
+        return f"{self.reader.name}: {self.book.name} ({issuedate} - {returndate})"
