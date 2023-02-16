@@ -53,5 +53,16 @@ urlpatterns = [
         name="bookonhand_update",
     ),
 
+    path("book/delete/<int:pk>/", views.BookDeleteView.as_view(), name="book_delete"),
+    path(
+        "category/delete/<int:pk>/", views.CategoryDeleteView.as_view(), name="category_delete"
+    ),
+    path("reader/delete/<int:pk>/", views.ReaderDeleteView.as_view(), name="reader_delete"),
+    path(
+        "bookonhand/delete/<int:pk>/",
+        views.BookOnHandDeleteView.as_view(),
+        name="bookonhand_delete",
+    ),
+
     path("admin/", admin.site.urls),
 ]

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h4>Вы действительно хотите удалить информацию о читателе?</h4>
+    <div class="h4 my-3 pb-3 text-muted">{{object}}</div>
+    <form method="post">
+        {% csrf_token %}
+        <a class="btn btn-outline-dark me-3 btn-lg" href="{% url 'readers' %}">Нет</a>
+        <button class="btn btn-danger btn-lg" type="submit">Да</button>
+    </form>
+
+{% endblock %}
