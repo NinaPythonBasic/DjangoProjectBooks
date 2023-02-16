@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <h3 class="mb-4 ms-5 ps-5">Информация о читателе</h3>
+    <div class="row">
+        <div class="col-6 offset-md-1 h4">Информация о читателе</div>
+    </div>
 
     {% include 'detail_block.html' with label='Имя' data=object.name %}
 
@@ -13,12 +15,12 @@
 
     <div class="row justify-content-start my-4">
         <div class="col-2 text-end">
-          <a class="btn btn-outline-danger btn-lg" href="{% url 'reader_delete' pk=object.pk %}">Удалить</a>
+          <a class="btn btn-outline-danger" href="{% url 'reader_delete' pk=object.pk %}">Удалить</a>
         </div>
         <div class="col-7">
             <span>
-                <a class="btn btn-outline-dark btn-lg" href="{% url 'reader_update' pk=object.pk %}">Изменить</a>
-                <a class="btn btn-outline-primary ms-3 btn-lg" href="{% url 'readers' %}">Назад</a>
+                <a class="btn btn-outline-dark" href="{% url 'reader_update' pk=object.pk %}">Изменить</a>
+                <a class="btn btn-outline-primary ms-3" href="{% url 'readers' %}">Назад</a>
             </span>
         </div>
     </div>
