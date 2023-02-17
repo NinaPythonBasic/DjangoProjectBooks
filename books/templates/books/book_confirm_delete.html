@@ -3,11 +3,11 @@
 {% block body %}
 
     <h4>Вы действительно хотите удалить книгу?</h4>
-    <div class="h4 my-3 pb-3 text-muted">{{object}}</div>
+    <div class="h5 my-3 pb-3 text-muted">{{object}}</div>
     <form method="post">
         {% csrf_token %}
-        <a class="btn btn-outline-dark me-3 btn-lg" href="{% url 'book' pk=object.pk %}">Нет</a>
-        <button class="btn btn-outline-danger btn-lg" type="submit">Да</button>
+        <a class="btn btn-outline-dark me-3" href="{% url 'book' pk=object.pk %}">Нет</a>
+        <button class="btn btn-outline-danger" type="submit">Да</button>
     </form>
 
 {% endblock %}
