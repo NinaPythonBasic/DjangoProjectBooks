@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('books', '0003_more_digits_for__phone_number'),
+        ("books", "0003_more_digits_for__phone_number"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='book',
-            name='details',
-            field=models.TextField(blank=True, default='', verbose_name='примечание'),
+            model_name="book",
+            name="details",
+            field=models.TextField(blank=True, default="", verbose_name="примечание"),
         ),
         migrations.AlterField(
-            model_name='bookonhand',
-            name='details',
-            field=models.TextField(blank=True, default='', verbose_name='примечание'),
+            model_name="bookonhand",
+            name="details",
+            field=models.TextField(blank=True, default="", verbose_name="примечание"),
         ),
         migrations.AlterField(
-            model_name='bookonhand',
-            name='returndate',
-            field=models.DateField(blank=True, null=True, verbose_name='дата возврата'),
+            model_name="bookonhand",
+            name="returndate",
+            field=models.DateField(blank=True, null=True, verbose_name="дата возврата"),
         ),
     ]

@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from books.models import Book, Category, Reader, BookOnHand
+from .forms import BookModelForm, ReaderModelForm, CategoryModelForm
 
 
 def main_page(request):
@@ -21,13 +28,13 @@ class BookDetailView(DetailView):
 
 class BookCreateView(CreateView):
     model = Book
-    fields = "__all__"
+    form_class = BookModelForm
     success_url = reverse_lazy("books")
 
 
 class BookUpdateView(UpdateView):
     model = Book
-    fields = "__all__"
+    form_class = BookModelForm
     success_url = reverse_lazy("books")
 
 
@@ -46,13 +53,13 @@ class CategoryDetailView(DetailView):
 
 class CategoryCreateView(CreateView):
     model = Category
-    fields = "__all__"
+    form_class = CategoryModelForm
     success_url = reverse_lazy("categories")
 
 
 class CategoryUpdateView(UpdateView):
     model = Category
-    fields = "__all__"
+    form_class = CategoryModelForm
     success_url = reverse_lazy("categories")
 
 
@@ -71,13 +78,15 @@ class ReaderDetailView(DetailView):
 
 class ReaderCreateView(CreateView):
     model = Reader
-    fields = "__all__"
+    # fields = "__all__"
+    form_class = ReaderModelForm
     success_url = reverse_lazy("readers")
 
 
 class ReaderUpdateView(UpdateView):
     model = Reader
-    fields = "__all__"
+    # fields = "__all__"
+    form_class = ReaderModelForm
     success_url = reverse_lazy("readers")
 
 

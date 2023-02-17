@@ -20,7 +20,9 @@ class Book(models.Model):
     name = models.CharField(
         verbose_name="название", max_length=256, blank=False, db_index=True
     )
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="жанр")
+    category = models.ForeignKey(
+        Category, on_delete=models.PROTECT, verbose_name="жанр"
+    )
     publisher = models.CharField(verbose_name="издательство", max_length=104)
     year = models.IntegerField(verbose_name="год издания")
     place = models.CharField(verbose_name="место хранения", max_length=256)
@@ -50,14 +52,16 @@ class Reader(models.Model):
 
 class BookOnHand(models.Model):
     book = models.ForeignKey(Book, on_delete=models.PROTECT, verbose_name="книга")
-    reader = models.ForeignKey(Reader, on_delete=models.PROTECT, verbose_name="читатель")
+    reader = models.ForeignKey(
+        Reader, on_delete=models.PROTECT, verbose_name="читатель"
+    )
     issuedate = models.DateField(verbose_name="дата выдачи")
     returndate = models.DateField(verbose_name="дата возврата", null=True, blank=True)
     details = models.TextField(verbose_name="примечание", default="", blank=True)
 
     def __str__(self):
         if self.returndate is None:
-            returndate = ''
+            returndate = ""
         else:
             returndate = self.returndate.strftime("%b. %d, %Y")
         issuedate = self.issuedate.strftime("%b. %d, %Y")
