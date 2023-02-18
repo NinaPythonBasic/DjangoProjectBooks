@@ -8,7 +8,7 @@ class TestIndexView(TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         # content
-        hello = "Hello, Stranger!".encode(encoding="utf-8")
+        hello = "Здравствуйте, Читатель!".encode(encoding="utf-8")
         self.assertIn(hello, response.content)
 
     def test_authorized_index_page(self):
@@ -19,11 +19,11 @@ class TestIndexView(TestCase):
         )
         self.client.login(username=username, password="user123456")
         # authorized user
-        # status_code
+        # status_codeы
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         # content
-        hello = f"Hello, {username}!".encode(encoding="utf-8")
+        hello = f"Здравствуйте, {username}!".encode(encoding="utf-8")
         self.assertIn(hello, response.content)
         self.client.logout()
 
