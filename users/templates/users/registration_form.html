@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="row">
+        <div class="offset-md-3 h4">Данные нового пользователя</div>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {# {{form.as_p}} #}
+        {% for field in form %}
+            <div class="row justify-content-start h5 my-3">
+                <div class="col-3 text-muted text-end">
+                  {{field.label_tag}}
+                </div>
+                <div class="col-6">
+                  {{field}}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row">
+            <div class="offset-md-3">
+                 <button class="btn btn-outline-success" type="submit">Зарегистрировать</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

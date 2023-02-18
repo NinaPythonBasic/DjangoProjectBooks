@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from books import views
+from users import views as users_views
 
 urlpatterns = [
     path("", views.main_page),
+    path("admin/", admin.site.urls),
+    # books
     path("books/", views.BookListView.as_view(), name="books"),
     path("categories/", views.CategoryListView.as_view(), name="categories"),
     path("readers/", views.ReaderListView.as_view(), name="readers"),
@@ -63,6 +66,8 @@ urlpatterns = [
         views.BookOnHandDeleteView.as_view(),
         name="bookonhand_delete",
     ),
-
-    path("admin/", admin.site.urls),
+    # registration, login and so on
+    path('users/create/', users_views.RegistrationView.as_view(), name='registration'),
+    path('users/login/', users_views.UserLoginView.as_view(), name='login'),
+    path('users/logout/', users_views.UserLogoutView.as_view(), name='logout'),
 ]
