@@ -19,7 +19,7 @@ class TestIndexView(TestCase):
         )
         self.client.login(username=username, password="user123456")
         # authorized user
-        # status_codeы
+        # status_code
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         # content
