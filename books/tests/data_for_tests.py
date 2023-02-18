@@ -6,7 +6,7 @@ category_str = "Русская классика"
 category_header = "Информация о жанре"
 book_header = "Информация о книге"
 reader_header = "Информация о читателе"
-bookonhand_header = "Книга у читателя"
+bookonhand_header = "Выдача книги"
 
 
 def get_category():
