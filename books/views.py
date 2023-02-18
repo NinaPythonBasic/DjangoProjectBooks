@@ -22,7 +22,6 @@ class BookListView(ListView):
 
     def get_queryset(self):
         filter_str = self.request.GET.get('q')
-        print('filter_str = ', filter_str)
         if filter_str is None:
             result_list = Book.objects.all()
         else:
@@ -84,6 +83,20 @@ class CategoryDeleteView(DeleteView):
 class ReaderListView(ListView):
     model = Reader
 
+    def get_queryset(self):
+        filter_str = self.request.GET.get('q')
+        if filter_str is None:
+            result_list = Reader.objects.all()
+        else:
+            result_list = Reader.objects.filter(name__icontains=filter_str)
+        return result_list
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        filter_str = self.request.GET.get('q')
+        context['q'] = filter_str
+        return context
+
 
 class ReaderDetailView(DetailView):
     model = Reader
@@ -110,6 +123,20 @@ class ReaderDeleteView(DeleteView):
 
 class BookOnHandListView(ListView):
     model = BookOnHand
+
+    def get_queryset(self):
+        filter_str = self.request.GET.get('q')
+        if filter_str is None:
+            result_list = BookOnHand.objects.all()
+        else:
+            result_list = BookOnHand.objects.filter(Q(book__name__icontains=filter_str) | Q(reader__name__icontains=filter_str))
+        return result_list
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        filter_str = self.request.GET.get('q')
+        context['q'] = filter_str
+        return context
 
 
 class BookOnHandDetailView(DetailView):
