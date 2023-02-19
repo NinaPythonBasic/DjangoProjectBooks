@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <form class="d-flex my-3 me-5" role="search" action="{% url 'books' %}" method="get">
-        <input class="form-control me-2" name="q" type="search" placeholder="Поиск по автору или названию книги..." aria-label="Поиск" value="{{q|default_if_none:""}}">
-        <button class="btn btn-outline-success" type="submit">Искать</button>
-    </form>
+    <span>
+        <form class="d-flex my-3 me-5" role="search" action="{% url 'books' %}" method="get">
+            <input class="form-control me-2" name="q" type="search" placeholder="Поиск по автору или названию книги..." aria-label="Поиск" value="{{q|default_if_none:""}}">
+            <button class="btn btn-outline-success" type="submit">Искать</button>
+            {% if q is not None %}
+                <a class="btn btn-outline-secondary ms-2" href="{% url 'books' %}">Сброс</a>
+            {% endif %}
+        </form>
+
+    </span>
     <h3>Список книг</h3>
     <table class="table table-striped">
       <thead>

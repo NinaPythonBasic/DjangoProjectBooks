@@ -4,6 +4,9 @@
     <form class="d-flex my-3 me-5" role="search" action="{% url 'readers' %}" method="get">
         <input class="form-control me-2" name="q" type="search" placeholder="Поиск по имени..." aria-label="Поиск" value="{{q|default_if_none:""}}">
         <button class="btn btn-outline-success" type="submit">Искать</button>
+         {% if q is not None %}
+            <a class="btn btn-outline-secondary ms-2" href="{% url 'readers' %}">Сброс</a>
+        {% endif %}
     </form>
     <h2>Список читателей</h2>
     <table class="table table-striped ">
