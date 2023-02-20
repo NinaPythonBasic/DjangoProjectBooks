@@ -18,12 +18,14 @@
   <div class="container, my-4">
       <div class="row justify-content-start">
         <div class="col-2">
-          <ul>
-              <li class="mt-1"><a href="{% url 'books' %}">Список книг</a></li>
-              <li class="mt-1"><a href="{% url 'categories' %}">Список жанров</a></li>
-              <li class="mt-1"><a href="{% url 'readers' %}">Список читателей</a></li>
-              <li class="mt-1"><a href="{% url 'booksonhand' %}">Выдача книг</a></li>
-          </ul>
+            {% if user.is_authenticated %}
+                  <ul>
+                      <li class="mt-1"><a href="{% url 'books' %}">Список книг</a></li>
+                      <li class="mt-1"><a href="{% url 'categories' %}">Список жанров</a></li>
+                      <li class="mt-1"><a href="{% url 'readers' %}">Список читателей</a></li>
+                      <li class="mt-1"><a href="{% url 'booksonhand' %}">Выдача книг</a></li>
+                  </ul>
+            {% endif %}
         </div>
         <div class="col-10">
             <div class="row">

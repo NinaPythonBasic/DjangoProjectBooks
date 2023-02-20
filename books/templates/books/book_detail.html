@@ -29,17 +29,18 @@
 
     {% include 'detail_block.html' with label='Номер' data=object.pk %}
 
-
-    <div class="row justify-content-start my-4">
-        <div class="col-2 text-end">
-          <a class="btn btn-outline-danger" href="{% url 'book_delete' pk=object.pk %}">Удалить</a>
+    {% if user.is_authenticated %}
+        <div class="row justify-content-start my-4">
+            <div class="col-2 text-end">
+              <a class="btn btn-outline-danger" href="{% url 'book_delete' pk=object.pk %}">Удалить</a>
+            </div>
+            <div class="col-7">
+                <span>
+                    <a class="btn btn-outline-dark" href="{% url 'book_update' pk=object.pk %}">Изменить</a>
+                    <a class="btn btn-outline-primary ms-3" href="{% url 'books' %}">Назад</a>
+                </span>
+            </div>
         </div>
-        <div class="col-7">
-            <span>
-                <a class="btn btn-outline-dark" href="{% url 'book_update' pk=object.pk %}">Изменить</a>
-                <a class="btn btn-outline-primary ms-3" href="{% url 'books' %}">Назад</a>
-            </span>
-        </div>
-    </div>
+    {% endif %}
 
 {% endblock %}
