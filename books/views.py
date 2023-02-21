@@ -150,17 +150,36 @@ class BookOnHandListView(LoginRequiredMixin, ListView):
 class BookOnHandDetailView(LoginRequiredMixin, DetailView):
     model = BookOnHand
 
-
+def set_onhand(updated_object):
+    if updated_object.issuedate is not None:
+            book_object = Book.objects.get(pk=updated_object.book.id)
+            if updated_object.returndate is None:
+                book_object.onhand = True
+            else:
+                book_object.onhand = False
+            book_object.save()
 class BookOnHandCreateView(LoginRequiredMixin, CreateView):
     model = BookOnHand
     fields = "__all__"
     success_url = reverse_lazy("booksonhand")
+
+    def form_valid(self, form):
+        # Перед сохранением формы
+        updated_object = form.save()
+        set_onhand(updated_object)
+        return super().form_valid(form)
 
 
 class BookOnHandUpdateView(LoginRequiredMixin, UpdateView):
     model = BookOnHand
     fields = "__all__"
     success_url = reverse_lazy("booksonhand")
+
+    def form_valid(self, form):
+        # Перед сохранением формы
+        updated_object = form.save()
+        set_onhand(updated_object)
+        return super().form_valid(form)
 
 
 class BookOnHandDeleteView(LoginRequiredMixin, DeleteView):

@@ -11,6 +11,7 @@ class BookModelForm(forms.ModelForm):
         self.fields["year"].widget.attrs["size"] = 40
         self.fields["place"].widget.attrs["size"] = 40
         self.fields["details"].widget.attrs["size"] = 40
+        self.fields["onhand"].disabled = True
 
     class Meta:
         model = Book
