@@ -1,14 +1,19 @@
 from django.test import TestCase
-from books.tests.data_for_tests import (
+from books.tests.utils import (
     bookonhand_header,
     get_category,
     get_book,
     get_reader,
     get_bookonhand,
+    login_user,
 )
+from django.contrib.auth.models import User
 
 
 class TestBookOnHandListView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_status_code(self):
         response = self.client.get("/booksonhand/")
         self.assertEqual(response.status_code, 200)
@@ -26,6 +31,9 @@ class TestBookOnHandListView(TestCase):
 
 
 class TestBookOnHandDetailView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_unknown_page(self):
         # status_code
         response = self.client.get("/bookonhand/77/")

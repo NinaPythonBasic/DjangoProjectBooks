@@ -1,11 +1,16 @@
 from django.test import TestCase
-from books.tests.data_for_tests import (
+from books.tests.utils import (
     category_header,
     get_category,
+    login_user,
 )
+from django.contrib.auth.models import User
 
 
 class TestCategoryListView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_status_code(self):
         response = self.client.get("/categories/")
         self.assertEqual(response.status_code, 200)
@@ -23,6 +28,9 @@ class TestCategoryListView(TestCase):
 
 
 class TestCategoryDetailView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_unknown_page(self):
         # status_code
         response = self.client.get("/category/77/")

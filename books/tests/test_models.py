@@ -1,6 +1,6 @@
 from django.test import TestCase
 from books.models import Category, Book, Reader
-from books.tests.data_for_tests import (
+from books.tests.utils import (
     category_str,
     get_category,
     get_book,

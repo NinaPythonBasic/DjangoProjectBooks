@@ -1,11 +1,15 @@
 from django.test import TestCase
-from books.tests.data_for_tests import (
+from books.tests.utils import (
     reader_header,
     get_reader,
+    login_user,
 )
 
 
 class TestReaderListView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_status_code(self):
         response = self.client.get("/readers/")
         self.assertEqual(response.status_code, 200)
@@ -23,6 +27,9 @@ class TestReaderListView(TestCase):
 
 
 class TestReaderDetailView(TestCase):
+    def setUp(self) -> None:
+        login_user(self)
+
     def test_response_unknown_page(self):
         # status_code
         response = self.client.get("/reader/77/")

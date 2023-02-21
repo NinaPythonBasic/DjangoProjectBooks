@@ -1,5 +1,6 @@
 from books.models import Category, Book, Reader, BookOnHand
 import datetime
+from django.contrib.auth.models import User
 
 category_str = "Русская классика"
 
@@ -7,6 +8,8 @@ category_header = "Информация о жанре"
 book_header = "Информация о книге"
 reader_header = "Информация о читателе"
 bookonhand_header = "Выдача книги"
+
+username = "user"
 
 
 def get_category():
@@ -37,3 +40,10 @@ def get_bookonhand(book, reader):
     return BookOnHand.objects.create(
         book=book, reader=reader, issuedate=datetime.date(2023, 1, 15)
     )
+
+
+def login_user(self):
+    User.objects.create_user(
+        username=username, email="user@email.com", password="user123456"
+    )
+    self.client.login(username=username, password="user123456")

@@ -1,5 +1,5 @@
 from django.test import TestCase
-from books.tests.data_for_tests import (
+from books.tests.utils import (
     book_header,
     get_category,
     get_book,

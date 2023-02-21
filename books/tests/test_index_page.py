@@ -1,5 +1,5 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
+from books.tests.utils import login_user, username
 
 
 class TestIndexView(TestCase):
@@ -13,11 +13,7 @@ class TestIndexView(TestCase):
 
     def test_authorized_index_page(self):
         # create user
-        username = "user"
-        User.objects.create_user(
-            username=username, email="user@email.com", password="user123456"
-        )
-        self.client.login(username=username, password="user123456")
+        login_user(self)
         # authorized user
         # status_code
         response = self.client.get("/")
@@ -28,6 +24,9 @@ class TestIndexView(TestCase):
         self.client.logout()
 
     def test_left_links(self):
+        # create user
+        login_user(self)
+        # authorized user
         response = self.client.get("/")
         # content
 
