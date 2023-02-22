@@ -11,7 +11,13 @@ from django.views.generic import (
 )
 
 from books.models import Book, Category, Reader, BookOnHand
-from .forms import BookModelForm, ReaderModelForm, CategoryModelForm
+from .forms import (
+    BookModelForm,
+    ReaderModelForm,
+    CategoryModelForm,
+    BookOnHandUpdateModelForm,
+    BookOnHandCreateModelForm,
+)
 
 
 def main_page(request):
@@ -150,17 +156,20 @@ class BookOnHandListView(LoginRequiredMixin, ListView):
 class BookOnHandDetailView(LoginRequiredMixin, DetailView):
     model = BookOnHand
 
+
 def set_onhand(updated_object):
     if updated_object.issuedate is not None:
-            book_object = Book.objects.get(pk=updated_object.book.id)
-            if updated_object.returndate is None:
-                book_object.onhand = True
-            else:
-                book_object.onhand = False
-            book_object.save()
+        book_object = Book.objects.get(pk=updated_object.book.id)
+        if updated_object.returndate is None:
+            book_object.onhand = True
+        else:
+            book_object.onhand = False
+        book_object.save()
+
+
 class BookOnHandCreateView(LoginRequiredMixin, CreateView):
     model = BookOnHand
-    fields = "__all__"
+    form_class = BookOnHandCreateModelForm
     success_url = reverse_lazy("booksonhand")
 
     def form_valid(self, form):
@@ -172,7 +181,7 @@ class BookOnHandCreateView(LoginRequiredMixin, CreateView):
 
 class BookOnHandUpdateView(LoginRequiredMixin, UpdateView):
     model = BookOnHand
-    fields = "__all__"
+    form_class = BookOnHandUpdateModelForm
     success_url = reverse_lazy("booksonhand")
 
     def form_valid(self, form):

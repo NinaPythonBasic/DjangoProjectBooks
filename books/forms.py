@@ -1,5 +1,5 @@
 from django import forms
-from .models import Book, Category, Reader
+from .models import Book, Category, Reader, BookOnHand
 
 
 class BookModelForm(forms.ModelForm):
@@ -37,4 +37,25 @@ class CategoryModelForm(forms.ModelForm):
 
     class Meta:
         model = Category
+        fields = "__all__"
+
+
+class BookOnHandCreateModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BookOnHandCreateModelForm, self).__init__(*args, **kwargs)
+        self.fields["book"].queryset = Book.objects.filter(onhand=False)
+        # self.fields["book"].queryset = Book.objects.filter(pk=self.instance.book.id)
+
+    class Meta:
+        model = BookOnHand
+        fields = "__all__"
+
+
+class BookOnHandUpdateModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BookOnHandUpdateModelForm, self).__init__(*args, **kwargs)
+        self.fields["book"].disabled = True
+
+    class Meta:
+        model = BookOnHand
         fields = "__all__"
