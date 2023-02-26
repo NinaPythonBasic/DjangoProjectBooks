@@ -17,11 +17,13 @@ class Command(BaseCommand):
         print("Создаем новые данные")
         rus_category = Category.objects.create(name="Русская классика")
         foreign_category = Category.objects.create(name="Зарубежная классика")
+        detective_category = Category.objects.create(name="Детектив")
 
         book1 = Book.objects.create(
             author="Тургенев Иван Сергеевич",
             name="Отцы и дети",
             category=rus_category,
+            isbn="978-5-04-111268-4",
             publisher="Эксмо",
             year=2001,
             place='{"шкаф": 1, "полка": 3}',
@@ -32,6 +34,7 @@ class Command(BaseCommand):
             author="Булгаков Михаил Афанасьевич",
             name="Мастер и Маргарита",
             category=rus_category,
+            isbn="978-5-389-01686-6",
             publisher="АСТ",
             year=2006,
             place='{"шкаф": 2, "полка": 2}',
@@ -41,9 +44,20 @@ class Command(BaseCommand):
             author="Лондон Джек",
             name="Мартин Иден",
             category=foreign_category,
+            isbn="978-5-519-61774-1",
             publisher="Азбука",
             year=2007,
             place='{"шкаф": 3, "полка": 1}',
+        )
+
+        book4 = Book.objects.create(
+            author="Лопе де Вега",
+            name="Собака на сене",
+            category=foreign_category,
+            isbn="978-5-4467-1296-0",
+            publisher="Треугольник",
+            year=2016,
+            place='{"шкаф": 3, "полка": 2}',
         )
 
         reader1 = Reader.objects.create(

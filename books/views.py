@@ -157,14 +157,23 @@ class BookOnHandDetailView(LoginRequiredMixin, DetailView):
     model = BookOnHand
 
 
+def update_onhand(book_id, len_of_booksonhand):
+    book = Book.objects.get(pk=book_id)
+    if len_of_booksonhand > 0:
+        book.onhand = True
+    else:
+        book.onhand = False
+    book.save()
+
+
 def set_onhand(updated_object):
-    if updated_object.issuedate is not None:
+    if (updated_object.issuedate is not None) and (updated_object.returndate is None):
         book_object = Book.objects.get(pk=updated_object.book.id)
-        if updated_object.returndate is None:
-            book_object.onhand = True
-        else:
-            book_object.onhand = False
+        book_object.onhand = True
         book_object.save()
+    else:
+        data = BookOnHand.objects.filter(book__id=updated_object.book.id, issuedate__isnull=False, returndate__isnull=True).exclude(id=updated_object.id)
+        update_onhand(updated_object.book.id, len(data))
 
 
 class BookOnHandCreateView(LoginRequiredMixin, CreateView):
@@ -194,3 +203,10 @@ class BookOnHandUpdateView(LoginRequiredMixin, UpdateView):
 class BookOnHandDeleteView(LoginRequiredMixin, DeleteView):
     model = BookOnHand
     success_url = reverse_lazy("booksonhand")
+
+    def delete(self, request, *args, **kwargs):
+        obj = self.get_object()
+        data = BookOnHand.objects.filter(book__id=obj.book.id, issuedate__isnull=False, returndate__isnull=True).exclude(id=obj.id)
+        update_onhand(obj.book.id, len(data))
+
+        return super().delete(request, *args, **kwargs)

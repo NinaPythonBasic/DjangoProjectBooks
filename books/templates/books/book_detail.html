@@ -11,6 +11,8 @@
 
     {% include 'detail_block.html' with label='Жанр' data=object.category.name %}
 
+    {% include 'detail_block.html' with label='ISBN' data=object.isbn %}
+
     {% include 'detail_block.html' with label='Издательство' data=object.publisher %}
 
     {% include 'detail_block.html' with label='Год издания' data=object.year %}

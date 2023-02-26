@@ -7,6 +7,7 @@ class BookModelForm(forms.ModelForm):
         super(BookModelForm, self).__init__(*args, **kwargs)
         self.fields["author"].widget.attrs["size"] = 40
         self.fields["name"].widget.attrs["size"] = 40
+        self.fields["isbn"].widget.attrs["size"] = 40
         self.fields["publisher"].widget.attrs["size"] = 40
         self.fields["year"].widget.attrs["size"] = 40
         self.fields["place"].widget.attrs["size"] = 40
