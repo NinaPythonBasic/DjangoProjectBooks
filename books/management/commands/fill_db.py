@@ -60,6 +60,16 @@ class Command(BaseCommand):
             place='{"шкаф": 3, "полка": 2}',
         )
 
+        book5 = Book.objects.create(
+            author="Дэн Браун",
+            name="Инферно",
+            category=detective_category,
+            isbn="978-5-17-108451-6",
+            publisher="АСТ",
+            year=2020,
+            place='{"шкаф": ,4 "полка": 10}',
+        )
+
         reader1 = Reader.objects.create(
             name="Сидоров Василий Петрович",
             address="Санкт-Петербург, ул.Войкова, д.1, кв.5",
@@ -72,8 +82,24 @@ class Command(BaseCommand):
             phone="+79351112234",
         )
 
-        bookonhand = BookOnHand.objects.create(
+        reader3 = Reader.objects.create(
+            name="Зеленкова Лариса Петровна",
+            address="Санкт-Петербург, ул.Красноармейская, д.16/3, кв.65",
+            phone="+79351112235",
+        )
+
+        reader4 = Reader.objects.create(
+            name="Губаревич Анастасия Александровна",
+            address="Санкт-Петербург, Ораниенбаумский пр., д.19 А, кв.309",
+            phone="+79351112236",
+        )
+
+        bookonhand1 = BookOnHand.objects.create(
             book=book3, reader=reader2, issuedate=datetime.date(2022, 12, 30)
+        )
+
+        bookonhand2 = BookOnHand.objects.create(
+            book=book5, reader=reader3, issuedate=datetime.date(2023, 2, 14), returndate=datetime.date(2023, 2, 25)
         )
 
         book3.onhand = True
