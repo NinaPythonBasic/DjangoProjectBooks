@@ -99,7 +99,10 @@ class Command(BaseCommand):
         )
 
         bookonhand2 = BookOnHand.objects.create(
-            book=book5, reader=reader3, issuedate=datetime.date(2023, 2, 14), returndate=datetime.date(2023, 2, 25)
+            book=book5,
+            reader=reader3,
+            issuedate=datetime.date(2023, 2, 14),
+            returndate=datetime.date(2023, 2, 25),
         )
 
         book3.onhand = True

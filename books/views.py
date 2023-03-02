@@ -172,7 +172,11 @@ def set_onhand(updated_object):
         book_object.onhand = True
         book_object.save()
     else:
-        data = BookOnHand.objects.filter(book__id=updated_object.book.id, issuedate__isnull=False, returndate__isnull=True).exclude(id=updated_object.id)
+        data = BookOnHand.objects.filter(
+            book__id=updated_object.book.id,
+            issuedate__isnull=False,
+            returndate__isnull=True,
+        ).exclude(id=updated_object.id)
         update_onhand(updated_object.book.id, len(data))
 
 
@@ -206,7 +210,9 @@ class BookOnHandDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
-        data = BookOnHand.objects.filter(book__id=obj.book.id, issuedate__isnull=False, returndate__isnull=True).exclude(id=obj.id)
+        data = BookOnHand.objects.filter(
+            book__id=obj.book.id, issuedate__isnull=False, returndate__isnull=True
+        ).exclude(id=obj.id)
         update_onhand(obj.book.id, len(data))
 
         return super().delete(request, *args, **kwargs)

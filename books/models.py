@@ -23,7 +23,7 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, verbose_name="жанр"
     )
-    isbn = models.CharField(verbose_name="ISBN", max_length=13)
+    isbn = models.CharField(verbose_name="ISBN", max_length=20)
     publisher = models.CharField(verbose_name="издательство", max_length=104)
     year = models.IntegerField(verbose_name="год издания")
     place = models.CharField(verbose_name="место хранения", max_length=256)

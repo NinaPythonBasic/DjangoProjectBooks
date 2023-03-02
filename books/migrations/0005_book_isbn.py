@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('books', '0004_allow_empty_fields'),
+        ("books", "0004_allow_empty_fields"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='book',
-            name='isbn',
-            field=models.CharField(default='', max_length=13, verbose_name='ISBN'),
+            model_name="book",
+            name="isbn",
+            field=models.CharField(default="", max_length=13, verbose_name="ISBN"),
         ),
     ]
